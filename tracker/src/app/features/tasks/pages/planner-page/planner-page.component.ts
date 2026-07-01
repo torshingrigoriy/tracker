@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, inject, signal} from '@angular/core';
 import {MatButton} from '@angular/material/button';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatCard, MatCardActions, MatCardHeader, MatCardTitle} from '@angular/material/card';
 import {MatListItemTitle, MatListOption, MatSelectionList} from '@angular/material/list';
 import {TasksService} from '../../services/tasks.service';
@@ -13,7 +12,6 @@ import {PlannerToolbarComponent} from '../../components/planner-toolbar/planner-
   selector: 'app-planner-page',
   imports: [
     MatButton,
-    MatButtonToggleModule,
     MatCard,
     MatCardActions,
     MatCardHeader,
