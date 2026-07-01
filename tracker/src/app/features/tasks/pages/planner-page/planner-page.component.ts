@@ -1,25 +1,16 @@
 import {ChangeDetectionStrategy, Component, computed, inject, signal} from '@angular/core';
-import {MatButton} from '@angular/material/button';
-import {MatCard, MatCardActions, MatCardHeader, MatCardTitle} from '@angular/material/card';
-import {MatListItemTitle, MatListOption, MatSelectionList} from '@angular/material/list';
 import {TasksService} from '../../services/tasks.service';
 import {TaskCalendarService} from '../../services/task-calendar.service';
 import {TaskViewMode, TaskViewModeOption} from '../../models/task-view.model';
 import {addDays, subDays} from 'date-fns';
 import {PlannerToolbarComponent} from '../../components/planner-toolbar/planner-toolbar.component';
+import {PlannerDayColumnComponent} from '../../components/planner-day-column/planner-day-column.component';
 
 @Component({
   selector: 'app-planner-page',
   imports: [
-    MatButton,
-    MatCard,
-    MatCardActions,
-    MatCardHeader,
-    MatCardTitle,
-    MatListItemTitle,
-    MatListOption,
-    MatSelectionList,
-    PlannerToolbarComponent
+    PlannerToolbarComponent,
+    PlannerDayColumnComponent
   ],
   templateUrl: './planner-page.component.html',
   styleUrl: './planner-page.component.scss',
@@ -59,9 +50,5 @@ export class PlannerPageComponent {
         ? addDays(date, 1)
         : subDays(date, 1);
     });
-  }
-
-  test() {
-
   }
 }

@@ -1,0 +1,16 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>{{ day().dayTitle }}</mat-card-title>
+  </mat-card-header>
+  <mat-selection-list>
+    @for(task of day().tasks; track task.id) {
+      <mat-list-option togglePosition="before" [selected]="true" (selectedChange)="onTaskClicked()">
+        <span matListItemTitle>{{ task.title }}</span>
+        <span>{{task.description}}</span>
+      </mat-list-option>
+    }
+  </mat-selection-list>
+  <mat-card-actions>
+    <button type="button" matButton>New task</button>
+  </mat-card-actions>
+</mat-card>
