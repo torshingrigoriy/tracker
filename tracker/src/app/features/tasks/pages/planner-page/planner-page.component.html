@@ -1,0 +1,35 @@
+<section>
+  <mat-toolbar class="elevated2">
+    <div class="datepicker">
+      <button matButton="filled" (click)="changeDate('backward')"><</button>
+      <div class="date-range">{{ viewDate() | date:'dd.MM.yyyy' }}</div>
+      <button matButton="filled" (click)="changeDate('forward')">></button>
+    </div>
+    <mat-button-toggle-group [value]="selectedViewModeId()" (change)="onViewModeChange($event.value)">
+      @for (mode of viewModes; track mode.id) {
+        <mat-button-toggle [value]="mode.id">{{ mode.label }}</mat-button-toggle>
+      }
+    </mat-button-toggle-group>
+  </mat-toolbar>
+</section>
+
+<div class="days">
+  @for(day of tasksForView(); track day.dayTitle) {
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{ day.dayTitle }}</mat-card-title>
+      </mat-card-header>
+      <mat-selection-list>
+        @for(task of day.tasks; track task.id) {
+          <mat-list-option togglePosition="before" [selected]="true" (selectedChange)="test()">
+            <span matListItemTitle>{{ task.title }}</span>
+            <span>{{task.description}}</span>
+          </mat-list-option>
+        }
+      </mat-selection-list>
+      <mat-card-actions>
+        <button matButton>New task</button>
+      </mat-card-actions>
+    </mat-card>
+  }
+</div>
