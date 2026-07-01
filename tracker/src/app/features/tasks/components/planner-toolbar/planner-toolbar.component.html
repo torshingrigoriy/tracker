@@ -1,1 +1,12 @@
-toolbar
+<mat-toolbar class="elevated2">
+  <div class="datepicker">
+    <button type="button" matButton="filled" (click)="viewDateChange.emit('backward')"><</button>
+    <div class="date-range">{{ viewDate() | date:'dd.MM.yyyy' }}</div>
+    <button type="button" matButton="filled" (click)="viewDateChange.emit('forward')">></button>
+  </div>
+  <mat-button-toggle-group [value]="selectedViewModeId()" (change)="viewModeChange.emit($event.value)">
+    @for (mode of viewModes(); track mode.id) {
+      <mat-button-toggle [value]="mode.id">{{ mode.label }}</mat-button-toggle>
+    }
+  </mat-button-toggle-group>
+</mat-toolbar>

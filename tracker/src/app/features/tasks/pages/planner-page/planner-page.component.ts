@@ -1,19 +1,17 @@
 import {ChangeDetectionStrategy, Component, computed, inject, signal} from '@angular/core';
-import {DatePipe} from '@angular/common';
 import {MatButton} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatCard, MatCardActions, MatCardHeader, MatCardTitle} from '@angular/material/card';
 import {MatListItemTitle, MatListOption, MatSelectionList} from '@angular/material/list';
-import {MatToolbar} from '@angular/material/toolbar';
 import {TasksService} from '../../services/tasks.service';
 import {TaskCalendarService} from '../../services/task-calendar.service';
 import {TaskViewMode, TaskViewModeOption} from '../../models/task-view.model';
 import {addDays, subDays} from 'date-fns';
+import {PlannerToolbarComponent} from '../../components/planner-toolbar/planner-toolbar.component';
 
 @Component({
   selector: 'app-planner-page',
   imports: [
-    DatePipe,
     MatButton,
     MatButtonToggleModule,
     MatCard,
@@ -23,7 +21,7 @@ import {addDays, subDays} from 'date-fns';
     MatListItemTitle,
     MatListOption,
     MatSelectionList,
-    MatToolbar
+    PlannerToolbarComponent
   ],
   templateUrl: './planner-page.component.html',
   styleUrl: './planner-page.component.scss',
@@ -57,7 +55,7 @@ export class PlannerPageComponent {
     this.selectedViewModeId.set(mode);
   }
 
-  protected changeDate(direction: 'backward' | 'forward') {
+  protected onViewDateChange(direction: 'backward' | 'forward') {
     this.viewDate.update((date) => {
       return direction === 'forward'
         ? addDays(date, 1)

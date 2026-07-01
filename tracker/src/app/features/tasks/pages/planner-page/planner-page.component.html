@@ -1,16 +1,11 @@
 <section>
-  <mat-toolbar class="elevated2">
-    <div class="datepicker">
-      <button matButton="filled" (click)="changeDate('backward')"><</button>
-      <div class="date-range">{{ viewDate() | date:'dd.MM.yyyy' }}</div>
-      <button matButton="filled" (click)="changeDate('forward')">></button>
-    </div>
-    <mat-button-toggle-group [value]="selectedViewModeId()" (change)="onViewModeChange($event.value)">
-      @for (mode of viewModes; track mode.id) {
-        <mat-button-toggle [value]="mode.id">{{ mode.label }}</mat-button-toggle>
-      }
-    </mat-button-toggle-group>
-  </mat-toolbar>
+  <app-planner-toolbar
+    [viewDate]="viewDate()"
+    [selectedViewModeId]="selectedViewModeId()"
+    [viewModes]="viewModes"
+    (viewDateChange)="onViewDateChange($event)"
+    (viewModeChange)="onViewModeChange($event)"
+  />
 </section>
 
 <div class="days">
